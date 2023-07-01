@@ -651,16 +651,16 @@ MonoBehaviour:
     VectorObservationSize: 6
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 2
-      BranchSizes: 
-    VectorActionSize: 02000000
+      m_NumContinuousActions: 0
+      BranchSizes: 05000000
+    VectorActionSize: 05000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 1
+    VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: c32d7daa5da07451282f9aba6d2877b2, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 7c062b3e40c5649e98042e1e26172c17, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: RollerBall
+  m_BehaviorName: DiscreteEx
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
