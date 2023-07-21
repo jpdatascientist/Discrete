@@ -43,9 +43,12 @@ public class RollerAgent : Agent
     {
         // Actions, size = 2 coninous
         Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = actionBuffers.ContinuousActions[0];
-        controlSignal.z = actionBuffers.ContinuousActions[1];
-        rBody.AddForce(controlSignal * forceMultiplier);
+        int action = actionBuffers.DiscreteActions[0];
+        if (action == 1) controlSignal.z = 1.0f;
+        if (action == 2) controlSignal.z = -1.0f;
+        if (action == 3) controlSignal.x = -1.0f;
+        if (action == 4) controlSignal.x = 1.0f;
+        rBody.AddForce(controlSignal * 5);
 
         // Rewards
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
@@ -64,10 +67,13 @@ public class RollerAgent : Agent
         }
     }
 
-    public override void Heuristic(in ActionBuffers actionsOut)
+    public override void Heuristic(in ActionBuffers actionBuffers)
     {
-        var continuousActionsOut = actionsOut.ContinuousActions;
-        continuousActionsOut[0] = Input.GetAxis("Horizontal");
-        continuousActionsOut[1] = Input.GetAxis("Vertical");
+        var actionsOut = actionBuffers.DiscreteActions;
+        actionsOut[0] = 0;
+        if (Input.GetKey(KeyCode.UpArrow)) actionsOut[0] = 1;
+        if (Input.GetKey(KeyCode.DownArrow)) actionsOut[0] = 2;
+        if (Input.GetKey(KeyCode.LeftArrow)) actionsOut[0] = 3;
+        if (Input.GetKey(KeyCode.RightArrow)) actionsOut[0] = 4;
     }
 }
